@@ -1,0 +1,14 @@
+build/
+install/
+log/
+
+__pycache__/
+*.py[cod]
+.venv/
+
+.env
+.env.*
+!.env.example
+
+/bags/
+/data/
