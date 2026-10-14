@@ -1,0 +1,3 @@
+[submodule "ros2_ws/src/VINS-Fusion"]
+	path = ros2_ws/src/VINS-Fusion
+	url = https://github.com/WKBunniK/VINS-Fusion-ROS2-jazzy.git
