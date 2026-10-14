@@ -1,0 +1,13 @@
+source /opt/ros/jazzy/setup.bash
+export PATH="/opt/flight-venv/bin:${PATH}"
+export VIRTUAL_ENV=/opt/flight-venv
+export CMAKE_PREFIX_PATH="/opt/ceres/2.1.0:${CMAKE_PREFIX_PATH:-}"
+export Ceres_DIR=/opt/ceres/2.1.0/lib/cmake/Ceres
+if [[ -f /workspaces/flight_rpi/ros2_ws/install/setup.bash ]]; then
+    source /workspaces/flight_rpi/ros2_ws/install/setup.bash
+fi
+HISTFILE=~/.history/bash_history
+HISTSIZE=20000
+HISTFILESIZE=20000
+PS1='\[\e[36m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ '
+if [[ -f /etc/bash_completion ]]; then source /etc/bash_completion; fi

@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+!.env.example
+**/build
+**/install
+**/log
+**/__pycache__
+**/.venv
+bags
+data
+*.zip
+*.tar
+*.tar.gz
+*.db3
+*.mcap

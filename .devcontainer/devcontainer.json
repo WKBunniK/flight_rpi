@@ -1,0 +1,51 @@
+{
+  "name": "flight_rpi — ROS 2 Jazzy ARM64",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "dev",
+  "runServices": ["dev", "foxglove"],
+  "workspaceFolder": "/workspaces/flight_rpi",
+  "remoteUser": "flight",
+  "updateRemoteUserUID": false,
+  "overrideCommand": false,
+  "shutdownAction": "none",
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "Foxglove Bridge",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/usr/bin/zsh",
+            "args": ["-l"]
+          },
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          },
+          "tmux (flight)": {
+            "path": "/usr/bin/tmux",
+            "args": ["attach-session", "-t", "flight"]
+          }
+        },
+        "python.defaultInterpreterPath": "/opt/flight-venv/bin/python",
+        "files.watcherExclude": {
+          "**/ros2_ws/build/**": true,
+          "**/ros2_ws/install/**": true,
+          "**/ros2_ws/log/**": true,
+          "**/bags/**": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+services:
+  dev:
+    volumes:
+      - type: bind
+        source: ${FLIGHT_DATA_DIR:?Set FLIGHT_DATA_DIR to an existing absolute host directory}
+        target: /data
+        bind:
+          create_host_path: false

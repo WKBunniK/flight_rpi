@@ -1,0 +1,23 @@
+source /opt/ros/jazzy/setup.zsh
+export PATH="/opt/flight-venv/bin:${PATH}"
+export VIRTUAL_ENV=/opt/flight-venv
+export CMAKE_PREFIX_PATH="/opt/ceres/2.1.0:${CMAKE_PREFIX_PATH:-}"
+export Ceres_DIR=/opt/ceres/2.1.0/lib/cmake/Ceres
+if [[ -f /workspaces/flight_rpi/ros2_ws/install/setup.zsh ]]; then
+    source /workspaces/flight_rpi/ros2_ws/install/setup.zsh
+fi
+HISTFILE=~/.history/zsh_history
+HISTSIZE=20000
+SAVEHIST=20000
+setopt APPEND_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
+autoload -Uz compinit
+compinit
+bindkey -e
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+bindkey '\e[3~' delete-char
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
+PROMPT='%F{cyan}%n@%m%f:%F{blue}%~%f %# '
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

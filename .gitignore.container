@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+compose.override.yaml
+build/
+install/
+log/
+__pycache__/
+*.py[cod]
+.venv/
+/bags/
+/data/

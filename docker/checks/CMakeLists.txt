@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(flight_ceres_probe LANGUAGES CXX)
+find_package(Ceres 2.1.0 EXACT REQUIRED)
+add_executable(flight_ceres_probe ceres_probe.cpp)
+target_link_libraries(flight_ceres_probe PRIVATE Ceres::ceres)
+target_compile_features(flight_ceres_probe PRIVATE cxx_std_17)

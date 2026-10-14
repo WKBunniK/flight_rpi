@@ -1,0 +1,93 @@
+name: flight_rpi
+
+x-environment: &ros-environment
+  ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+  RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+  ROS_AUTOMATIC_DISCOVERY_RANGE: SUBNET
+  OPENBLAS_NUM_THREADS: "1"
+
+services:
+  dev:
+    image: flight-rpi:jazzy-dev
+    platform: linux/arm64
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ROS_BASE_IMAGE: ${ROS_BASE_IMAGE:-ros:jazzy-ros-base-noble}
+        HOST_UID: ${HOST_UID:-1000}
+        HOST_GID: ${HOST_GID:-1000}
+        BUILD_JOBS: ${BUILD_JOBS:-2}
+    container_name: flight_rpi_dev
+    init: true
+    restart: unless-stopped
+    network_mode: host
+    shm_size: "512m"
+    working_dir: /workspaces/flight_rpi
+    environment: *ros-environment
+    group_add:
+      - "${HOST_DIALOUT_GID:-20}"
+      - "${HOST_VIDEO_GID:-44}"
+      - "${HOST_PLUGDEV_GID:-46}"
+      - "${HOST_INPUT_GID:-104}"
+    device_cgroup_rules:
+      - "c *:* rwm"
+    volumes:
+      - type: bind
+        source: .
+        target: /workspaces/flight_rpi
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /dev
+        target: /dev
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /run/udev
+        target: /run/udev
+        read_only: true
+        bind:
+          create_host_path: false
+      - flight_history:/home/flight/.history
+      - flight_vscode:/home/flight/.vscode-server
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  foxglove:
+    image: flight-rpi:jazzy-dev
+    platform: linux/arm64
+    pull_policy: never
+    depends_on:
+      - dev
+    container_name: flight_rpi_foxglove
+    init: true
+    restart: unless-stopped
+    network_mode: host
+    environment: *ros-environment
+    volumes:
+      - type: bind
+        source: .
+        target: /workspaces/flight_rpi
+        read_only: true
+        bind:
+          create_host_path: false
+    command:
+      - ros2
+      - launch
+      - foxglove_bridge
+      - foxglove_bridge_launch.xml
+      - "port:=${FOXGLOVE_PORT:-8765}"
+      - "address:=0.0.0.0"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  flight_history:
+  flight_vscode:
