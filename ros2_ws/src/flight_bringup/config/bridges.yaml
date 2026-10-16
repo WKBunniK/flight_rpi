@@ -1,0 +1,27 @@
+vins_to_vision_pose:
+  ros__parameters:
+    input_topic: /odometry
+    output_topic: /mavros/vision_pose/pose
+
+vins_to_hil_gps:
+  ros__parameters:
+    input_topic: /odometry
+    output_topic: /mavros/hil/gps
+    origin_lat_deg: 56.097385
+    origin_lon_deg: 35.887286
+    origin_alt_m: 157.0
+    yaw_offset_rad: 0.0
+    fix_type: 3
+    satellites_visible: 15
+    eph: 30
+    epv: 60
+    gps_id: 0
+    min_speed_for_cog_mps: 0.1
+
+set_message_interval:
+  ros__parameters:
+    message_id: 105
+    message_rate: 400.0
+    request_timeout_sec: 10.0
+    state_topic: /mavros/state
+    service_name: /mavros/set_message_interval
