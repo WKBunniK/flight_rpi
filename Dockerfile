@@ -78,6 +78,11 @@ RUN chmod 0755 /usr/local/bin/flight-entrypoint /usr/local/bin/flight-start-dev 
     && dpkg-query -W > /opt/flight-build/apt-packages.tsv \
     && /opt/flight-venv/bin/python -m pip freeze > /opt/flight-build/python-packages.txt
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libboost-program-options-dev \
+    && dpkg-query -W > /opt/flight-build/apt-packages.tsv \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV PATH=/opt/flight-venv/bin:${PATH} \
     Ceres_DIR=/opt/ceres/2.1.0/lib/cmake/Ceres \
     HOME=/home/flight
