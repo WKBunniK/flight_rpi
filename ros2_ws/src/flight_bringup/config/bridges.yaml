@@ -2,6 +2,8 @@ vins_to_vision_pose:
   ros__parameters:
     input_topic: /odometry
     output_topic: /mavros/vision_pose/pose
+    yaw_offset_rad: 0.0
+    output_frame_id: world_enu
 
 vins_to_hil_gps:
   ros__parameters:
