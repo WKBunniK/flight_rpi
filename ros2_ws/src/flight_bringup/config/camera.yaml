@@ -1,10 +1,10 @@
 /usb_cam/camera:
   ros__parameters:
-    video_device: /dev/video0
-    framerate: 90.0
+    video_device: /dev/v4l/by-id/usb-Global_Shutter_Camera_Global_Shutter_Camera_01.00.00-video-index0
+    framerate: 30.0
     io_method: mmap
     frame_id: camera_optical_frame
-    pixel_format: mjpeg2rgb
+    pixel_format: yuyv2rgb
     av_device_format: YUV422P
     image_width: 640
     image_height: 480

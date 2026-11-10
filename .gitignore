@@ -14,3 +14,6 @@ __pycache__/
 /data/
 
 compose.override.yaml
+
+# Linux process crash dumps
+core.[0-9]*

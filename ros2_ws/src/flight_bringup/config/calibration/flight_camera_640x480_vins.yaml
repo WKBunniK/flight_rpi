@@ -1,0 +1,18 @@
+%YAML:1.0
+---
+# views: 65
+# rms_px: 0.248430
+model_type: PINHOLE
+camera_name: flight_camera
+image_width: 640
+image_height: 480
+distortion_parameters:
+  k1: 0.08842533430294802
+  k2: -0.16516592416374726
+  p1: -0.005525764590513703
+  p2: 0.004936259783417549
+projection_parameters:
+  fx: 580.0311690297049
+  fy: 575.9103782328303
+  cx: 314.7233571885416
+  cy: 236.84020065913668

@@ -88,6 +88,12 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  mediamtx:
+    image: bluenviron/mediamtx:1.21.3
+    network_mode: host
+    volumes:
+      - ./config/mediamtx.yaml:/mediamtx.yml:ro
+
 volumes:
   flight_history:
   flight_vscode:
