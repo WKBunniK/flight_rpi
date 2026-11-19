@@ -1,3 +1,6 @@
 [submodule "ros2_ws/src/VINS-Fusion"]
 	path = ros2_ws/src/VINS-Fusion
 	url = https://github.com/WKBunniK/VINS-Fusion-ROS2-jazzy.git
+[submodule "ros2_ws/src/usb_cam"]
+	path = ros2_ws/src/usb_cam
+	url = https://github.com/ros-drivers/usb_cam.git
