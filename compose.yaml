@@ -82,6 +82,7 @@ services:
       - foxglove_bridge_launch.xml
       - "port:=${FOXGLOVE_PORT:-8765}"
       - "address:=0.0.0.0"
+      - "topic_whitelist:=['/camera_pose_visual', '/odometry']"
     logging:
       driver: json-file
       options:

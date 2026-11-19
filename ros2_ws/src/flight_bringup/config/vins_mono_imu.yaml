@@ -1,0 +1,69 @@
+%YAML:1.0
+
+# Одна камера и одна IMU.
+imu: 1
+num_of_cam: 1
+
+imu_topic: "/mavros/imu/data_raw"
+image0_topic: "/usb_cam/image_raw"
+image1_topic: ""
+
+# Путь относительно каталога этого конфигурационного файла.
+cam0_calib: "calibration/flight_camera_640x480_vins.yaml"
+
+image_width: 640
+image_height: 480
+
+# Каталог должен существовать до запуска VINS.
+output_path: "/workspaces/flight_rpi/ros2_ws/log/vins_rpi5"
+
+# Начальное преобразование из оптической системы камеры
+# в систему IMU, публикуемую MAVROS: Forward-Left-Up.
+#
+# Камера: 8 см назад, 2.3 см влево.
+# Разность высот предварительно принята равной нулю.
+#
+# 1 — разрешить уточнение начального преобразования.
+estimate_extrinsic: 1
+
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.0,  1.0,  0.0, -0.080,
+          -1.0,  0.0,  0.0,  0.023,
+           0.0,  0.0,  1.0,  0.000,
+           0.0,  0.0,  0.0,  1.000 ]
+
+# Работа на CPU.
+use_gpu: 0
+use_gpu_acc_flow: 0
+use_gpu_ceres: 0
+
+multiple_thread: 1
+
+# Отслеживание особенностей изображения.
+max_cnt: 150
+min_dist: 30
+F_threshold: 1.0
+show_track: 1
+flow_back: 1
+
+# Начальные настройки оптимизации.
+# max_solver_time задаётся в секундах: 0.04 = 40 мс.
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+# Предварительные параметры шумов из примера VINS.
+# Это пока не измеренные характеристики нашей IMU.
+acc_n: 0.1
+gyr_n: 0.01
+acc_w: 0.001
+gyr_w: 0.0001
+g_norm: 9.81
+
+# Разрешить оценку временного смещения камеры относительно IMU.
+# Ноль — начальное приближение, а не результат измерения.
+estimate_td: 1
+td: 0.0

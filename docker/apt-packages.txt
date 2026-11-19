@@ -71,7 +71,6 @@ ros-jazzy-tf2-eigen
 ros-jazzy-tf2-geometry-msgs
 ros-jazzy-tf2-ros
 ros-jazzy-tf2-sensor-msgs
-ros-jazzy-usb-cam
 ros-jazzy-v4l2-camera
 ros-jazzy-vision-msgs
 sudo
@@ -85,3 +84,12 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 ffmpeg
+libavcodec-dev
+libavformat-dev
+libavutil-dev
+libswscale-dev
+ros-jazzy-ament-cmake-auto
+ros-jazzy-camera-info-manager
+ros-jazzy-image-transport-plugins
+ros-jazzy-rosidl-default-generators
+
