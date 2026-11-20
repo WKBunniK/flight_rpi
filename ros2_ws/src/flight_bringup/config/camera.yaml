@@ -11,3 +11,5 @@
     camera_name: flight_camera
     camera_info_url: ""
     brightness: -1
+    autofocus: false
+    focus: 332
